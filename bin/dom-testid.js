@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { crawlDom, WAIT_UNTIL_VALUES } = require('../lib/dom');
+const { crawlDom, WAIT_UNTIL_VALUES } = require("../lib/dom");
 
 const HELP = `Usage: dom-testid <url> [options]
 
@@ -19,46 +19,48 @@ function parseArguments(arguments_) {
   for (let index = 0; index < arguments_.length; index += 1) {
     const argument = arguments_[index];
 
-    if (argument === '-h' || argument === '--help') {
+    if (argument === "-h" || argument === "--help") {
       return { help: true };
     }
-    if (argument === '--headed') {
+    if (argument === "--headed") {
       options.headed = true;
       continue;
     }
-    if (argument === '--timeout') {
+    if (argument === "--timeout") {
       const timeout = Number(arguments_[index + 1]);
       if (!Number.isInteger(timeout) || timeout <= 0) {
-        throw new Error('--timeout must be a positive integer');
+        throw new Error("--timeout must be a positive integer");
       }
       options.timeout = timeout;
       index += 1;
       continue;
     }
-    if (argument === '--wait-until') {
+    if (argument === "--wait-until") {
       const waitUntil = arguments_[index + 1];
       if (!WAIT_UNTIL_VALUES.has(waitUntil)) {
-        throw new Error('--wait-until must be commit, domcontentloaded, load, or networkidle');
+        throw new Error(
+          "--wait-until must be commit, domcontentloaded, load, or networkidle",
+        );
       }
       options.waitUntil = waitUntil;
       index += 1;
       continue;
     }
-    if (argument.startsWith('-')) {
+    if (argument.startsWith("-")) {
       throw new Error(`Unknown option: ${argument}`);
     }
     if (url) {
-      throw new Error('Only one URL can be crawled at a time');
+      throw new Error("Only one URL can be crawled at a time");
     }
     url = argument;
   }
 
   if (!url) {
-    throw new Error('A URL is required');
+    throw new Error("A URL is required");
   }
 
   const parsedUrl = new URL(url);
-  if (!['http:', 'https:', 'file:', 'data:'].includes(parsedUrl.protocol)) {
+  if (!["http:", "https:", "file:", "data:"].includes(parsedUrl.protocol)) {
     throw new Error(`Unsupported URL protocol: ${parsedUrl.protocol}`);
   }
 
@@ -76,7 +78,7 @@ async function main() {
     console.log(await crawlDom(parsed.url, parsed.options));
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    console.error('Run dom-testid --help for usage.');
+    console.error("Run dom-testid --help for usage.");
     process.exitCode = 1;
   }
 }

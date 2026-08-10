@@ -1,10 +1,10 @@
-const assert = require('node:assert/strict');
-const test = require('node:test');
+const assert = require("node:assert/strict");
+const test = require("node:test");
 
-const { crawlDom } = require('../lib/dom');
-const { parseArguments } = require('../bin/dom-testid');
+const { crawlDom } = require("../lib/dom");
+const { parseArguments } = require("../bin/dom-testid");
 
-test('prints visible body elements and data-testid values', async () => {
+test("prints visible body elements and data-testid values", async () => {
   const html = `<!doctype html>
     <html>
       <head><title>Checkout</title></head>
@@ -21,22 +21,34 @@ test('prints visible body elements and data-testid values', async () => {
 
   assert.match(output, /^# document "Checkout"/);
   assert.match(output, /main data-testid="checkout-panel"/);
-  assert.ok(output.includes('button data-testid="submit-\\"order\\"" type="submit"'));
+  assert.ok(
+    output.includes('button data-testid="submit-\\"order\\"" type="submit"'),
+  );
   assert.match(output, /#text "Buy now"/);
-  assert.doesNotMatch(output, /hidden-message|aria-hidden-child|hidden-attribute|Nope/);
+  assert.doesNotMatch(
+    output,
+    /hidden-message|aria-hidden-child|hidden-attribute|Nope/,
+  );
   assert.doesNotMatch(output, /html|head|title/);
 });
 
-test('parses supported CLI options', () => {
+test("parses supported CLI options", () => {
   assert.deepEqual(
-    parseArguments(['https://example.com', '--timeout', '5000', '--wait-until', 'load', '--headed']),
+    parseArguments([
+      "https://example.com",
+      "--timeout",
+      "5000",
+      "--wait-until",
+      "load",
+      "--headed",
+    ]),
     {
-      options: { timeout: 5000, waitUntil: 'load', headed: true },
-      url: 'https://example.com/',
+      options: { timeout: 5000, waitUntil: "load", headed: true },
+      url: "https://example.com/",
     },
   );
 });
 
-test('rejects a missing URL', () => {
+test("rejects a missing URL", () => {
   assert.throws(() => parseArguments([]), /A URL is required/);
 });

@@ -6,6 +6,8 @@
     "dom-testid": "bin/dom-testid.js"
   },
   "scripts": {
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint . --fix && prettier --write .",
     "test": "node --test",
     "postinstall": "playwright install chromium"
   },
@@ -23,5 +25,12 @@
   },
   "dependencies": {
     "playwright": "^1.54.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2"
   }
 }
