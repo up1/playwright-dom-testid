@@ -2,16 +2,13 @@
 
 Render a URL with Chromium and print visible elements under its `<body>` as a compact text tree. Hidden subtrees are omitted, while useful attributes such as every visible `data-testid` and its value are retained.
 
-Install dependencies and run the linter:
+Install dependencies:
 
 ```sh
 npm install
-npm run lint
-npm run lint:fix
 ```
 
 How to use:
-
 ```
 npx dom-testid https://seleniumbase.io/coffee/
 npx dom-testid https://seleniumbase.io/coffee/ --wait-until load
