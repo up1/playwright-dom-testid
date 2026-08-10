@@ -1,0 +1,27 @@
+{
+  "name": "agent-browser-testid",
+  "version": "1.0.0",
+  "description": "Render a URL and print a compact DOM tree with data-testid attributes",
+  "bin": {
+    "dom-testid": "bin/dom-testid.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "postinstall": "playwright install chromium"
+  },
+  "keywords": [
+    "cli",
+    "dom",
+    "playwright",
+    "testid"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "playwright": "^1.54.2"
+  }
+}
