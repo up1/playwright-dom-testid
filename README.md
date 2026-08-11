@@ -5,8 +5,9 @@ Render a URL with Chromium and print visible elements under its `<body>` as a co
 Install dependencies:
 
 ```sh
+git clone https://github.com/up1/playwright-dom-testid.git
+cd playwright-dom-testid
 npm install
-
 npm install -g
 ```
 
