@@ -6,6 +6,8 @@ Install dependencies:
 
 ```sh
 npm install
+
+npm install -g
 ```
 
 How to use:
